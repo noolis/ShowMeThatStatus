@@ -14,6 +14,16 @@ View controller that can be used for presenting status changes to the user, for 
 
 ## Usage: ##
 
+* To add it to your project best way is to use *Cocoapods*:
+
+```
+source 'https://github.com/wssj/SMTSPodSpecs.git'
+
+pod 'ShowMeThatStatus'
+```
+
+* Example usage in your project:
+
 ```
 
         let vc = SMTSViewController(status: .Loading, message: "Loading...")
