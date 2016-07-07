@@ -8,10 +8,6 @@
 
 import Foundation
 
-let SMTSVCNibName = "SMTSViewController"
-let tm = SMTSTransitionManager()
-let smtsStyle = SMTSStyle()
-
 public typealias StatusIndicatorBlock = () -> Void
 
 public enum SMTSProgressStatus {
@@ -22,9 +18,16 @@ public enum SMTSActionType {
     case Default, Cancel
 }
 
-let ringStrokeAnimationKey = "StatusIndicator.stroke"
-let ringRotationAnimationKey = "StatusIndicator.rotation"
-let completionAnimationDuration: NSTimeInterval = 0.3
-let hidesWhenCompletedDelay: NSTimeInterval = 0.5
-
+struct SMTSConstants {
+    
+    static let SMTSVCNibName = "SMTSViewController"
+    static let tm = SMTSTransitionManager()
+    static let smtsStyle = SMTSStyle()
+    
+    static let ringStrokeAnimationKey = "StatusIndicator.stroke"
+    static let ringRotationAnimationKey = "StatusIndicator.rotation"
+    static let completionAnimationDuration: NSTimeInterval = 0.3
+    static let hidesWhenCompletedDelay: NSTimeInterval = 0.5
+    
+}
 

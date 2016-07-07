@@ -14,7 +14,7 @@ public class SMTSViewController: UIViewController {
     private var actions = [SMTSAction]()
     private var status: SMTSProgressStatus = .Unknown
     
-    var style = smtsStyle
+    var style = SMTSConstants.smtsStyle
     
     //MARK: - Outlets
     
@@ -30,7 +30,7 @@ public class SMTSViewController: UIViewController {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        transitioningDelegate = tm
+        transitioningDelegate = SMTSConstants.tm
         modalPresentationStyle = .Custom
     }
     
@@ -41,14 +41,16 @@ public class SMTSViewController: UIViewController {
     
     public convenience init(status: SMTSProgressStatus, message: String = "") {
         
-        self.init(nibName: SMTSVCNibName, bundle: NSBundle(forClass: SMTSViewController.self))
+        self.init(nibName: SMTSConstants.SMTSVCNibName,
+                  bundle: NSBundle(forClass: SMTSViewController.self))
         self.status = status
         self.statusMessage = message
     }
     
     public convenience init() {
         
-        self.init(nibName: SMTSVCNibName, bundle: NSBundle(forClass: SMTSViewController.self))
+        self.init(nibName: SMTSConstants.SMTSVCNibName,
+                  bundle: NSBundle(forClass: SMTSViewController.self))
     }
     
     //MARK: - View life cycle
@@ -133,7 +135,7 @@ public class SMTSViewController: UIViewController {
         UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.5,
                                    initialSpringVelocity: 0.8, options: [], animations: {
                                     
-            self.view.frame.size = CGSize(width: style.width,
+            self.view.frame.size = CGSize(width: SMTSConstants.smtsStyle.width,
                 height: 40 + 90 + size.height + self.constrStackViewHeight.constant)
                                     
             }, completion: nil)

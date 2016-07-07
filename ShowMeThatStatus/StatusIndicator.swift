@@ -11,7 +11,7 @@ import UIKit
 
 public class StatusIndicator: UIView {
     
-    @IBInspectable public var lineWidth: CGFloat = smtsStyle.lineWidth {
+    @IBInspectable public var lineWidth: CGFloat = SMTSConstants.smtsStyle.lineWidth {
         didSet {
             progressLayer.lineWidth = lineWidth
             shapeLayer.lineWidth = lineWidth
@@ -20,7 +20,7 @@ public class StatusIndicator: UIView {
         }
     }
     
-    @IBInspectable public var strokeColor: UIColor = smtsStyle.progressColor {
+    @IBInspectable public var strokeColor: UIColor = SMTSConstants.smtsStyle.progressColor {
         didSet{
             progressLayer.strokeColor = strokeColor.CGColor
             shapeLayer.strokeColor = strokeColor.CGColor
@@ -28,14 +28,14 @@ public class StatusIndicator: UIView {
         }
     }
     
-    @IBInspectable public var font: UIFont = smtsStyle.progressFont {
+    @IBInspectable public var font: UIFont = SMTSConstants.smtsStyle.progressFont {
         didSet{
             progressLabel.font = font
         }
     }
     
     public var hidesWhenCompleted: Bool = false
-    public var hideAfterTime: NSTimeInterval = hidesWhenCompletedDelay
+    public var hideAfterTime: NSTimeInterval = SMTSConstants.hidesWhenCompletedDelay
     var status: SMTSProgressStatus = .Unknown
     
     private var _progress: Float = 0.0
@@ -130,7 +130,7 @@ public class StatusIndicator: UIView {
         animation.fromValue = 0.0
         animation.toValue = 2 * M_PI
         animation.repeatCount = Float.infinity
-        progressLayer.addAnimation(animation, forKey: ringRotationAnimationKey)
+        progressLayer.addAnimation(animation, forKey: SMTSConstants.ringRotationAnimationKey)
         
         let totalDuration = 1.0
         let firstDuration = 2.0 * totalDuration / 3.0
@@ -162,7 +162,7 @@ public class StatusIndicator: UIView {
         animations.duration = firstDuration + secondDuration
         animations.repeatCount = Float.infinity
         animations.animations = [headAnimation, tailAnimation, endHeadAnimation, endTailAnimation]
-        progressLayer.addAnimation(animations, forKey: ringRotationAnimationKey)
+        progressLayer.addAnimation(animations, forKey: SMTSConstants.ringRotationAnimationKey)
     }
     
     public func completeLoading(success: Bool, completion: StatusIndicatorBlock? = nil) {
@@ -184,8 +184,8 @@ public class StatusIndicator: UIView {
         
         var strokeStart :CGFloat = 0.25
         var strokeEnd :CGFloat = 0.8
-        var phase1Duration = 0.7 * completionAnimationDuration
-        var phase2Duration = 0.3 * completionAnimationDuration
+        var phase1Duration = 0.7 * SMTSConstants.completionAnimationDuration
+        var phase2Duration = 0.3 * SMTSConstants.completionAnimationDuration
         var phase3Duration = 0.0
         
         if !success {
@@ -196,9 +196,9 @@ public class StatusIndicator: UIView {
             strokeStart = increase / (sum + increase)
             strokeEnd = (increase + sum/2) / (sum + increase)
             
-            phase1Duration = 0.5 * completionAnimationDuration
-            phase2Duration = 0.2 * completionAnimationDuration
-            phase3Duration = 0.3 * completionAnimationDuration
+            phase1Duration = 0.5 * SMTSConstants.completionAnimationDuration
+            phase2Duration = 0.2 * SMTSConstants.completionAnimationDuration
+            phase3Duration = 0.3 * SMTSConstants.completionAnimationDuration
         }
         
         shapeLayer.strokeEnd = 1.0
@@ -250,7 +250,7 @@ public class StatusIndicator: UIView {
     
     override public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         if hidesWhenCompleted {
-            NSTimer.scheduledTimerWithTimeInterval(hidesWhenCompletedDelay,
+            NSTimer.scheduledTimerWithTimeInterval(SMTSConstants.hidesWhenCompletedDelay,
                                                    target: self,
                                                    selector: #selector(StatusIndicator.hiddenLoadingView),
                                                    userInfo: nil,
@@ -382,8 +382,8 @@ public class StatusIndicator: UIView {
     @objc private func resetAnimations() {
         if status == .Loading {
             status = .Unknown
-            progressLayer.removeAnimationForKey(ringRotationAnimationKey)
-            progressLayer.removeAnimationForKey(ringStrokeAnimationKey)
+            progressLayer.removeAnimationForKey(SMTSConstants.ringRotationAnimationKey)
+            progressLayer.removeAnimationForKey(SMTSConstants.ringStrokeAnimationKey)
             
             startLoading()
         }
