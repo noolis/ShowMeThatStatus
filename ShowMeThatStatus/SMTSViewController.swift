@@ -135,7 +135,7 @@ public class SMTSViewController: UIViewController {
         UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.5,
                                    initialSpringVelocity: 0.8, options: [], animations: {
                                     
-            self.view.frame.size = CGSize(width: SMTSConstants.smtsStyle.width,
+            self.view.frame.size = CGSize(width: self.style.width,
                 height: 40 + 90 + size.height + self.constrStackViewHeight.constant)
                                     
             }, completion: nil)
