@@ -11,7 +11,7 @@ import UIKit
 
 public class StatusIndicator: UIView {
     
-    @IBInspectable public var lineWidth: CGFloat = style.lineWidth {
+    @IBInspectable public var lineWidth: CGFloat = smtsStyle.lineWidth {
         didSet {
             progressLayer.lineWidth = lineWidth
             shapeLayer.lineWidth = lineWidth
@@ -20,7 +20,7 @@ public class StatusIndicator: UIView {
         }
     }
     
-    @IBInspectable public var strokeColor: UIColor = style.progressColor {
+    @IBInspectable public var strokeColor: UIColor = smtsStyle.progressColor {
         didSet{
             progressLayer.strokeColor = strokeColor.CGColor
             shapeLayer.strokeColor = strokeColor.CGColor
@@ -28,7 +28,7 @@ public class StatusIndicator: UIView {
         }
     }
     
-    @IBInspectable public var font: UIFont = style.progressFont {
+    @IBInspectable public var font: UIFont = smtsStyle.progressFont {
         didSet{
             progressLabel.font = font
         }
