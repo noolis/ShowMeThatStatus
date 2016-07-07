@@ -10,7 +10,7 @@ import Foundation
 
 let SMTSVCNibName = "SMTSViewController"
 let tm = SMTSTransitionManager()
-let style = SMTSStyle()
+let smtsStyle = SMTSStyle()
 
 public typealias StatusIndicatorBlock = () -> Void
 
