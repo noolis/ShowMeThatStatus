@@ -14,6 +14,8 @@ public class SMTSViewController: UIViewController {
     private var actions = [SMTSAction]()
     private var status: SMTSProgressStatus = .Unknown
     
+    var style = smtsStyle
+    
     //MARK: - Outlets
     
     @IBOutlet private weak var statusIndicator: StatusIndicator!
