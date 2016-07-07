@@ -36,13 +36,13 @@ public class SMTSAction: NSObject {
         button.setTitle(title, forState: .Normal)
         
         button.titleLabel?.font = type == .Default ?
-            style.defaultButtonFont : style.cancelButtonFont
+            smtsStyle.defaultButtonFont : smtsStyle.cancelButtonFont
         button.setTitleColor(type == .Default ?
-            style.defaultButtonTextColor : style.cancelButtonTextColor,
+            smtsStyle.defaultButtonTextColor : smtsStyle.cancelButtonTextColor,
                               forState: .Normal)
         button.backgroundColor = type == .Default ?
-            style.defaultButtonBackgroundColor : style.cancelButtonBackgroundColor
-        button.layer.cornerRadius = style.buttonsCornerRadius
+            smtsStyle.defaultButtonBackgroundColor : smtsStyle.cancelButtonBackgroundColor
+        button.layer.cornerRadius = smtsStyle.buttonsCornerRadius
         
     }
     
