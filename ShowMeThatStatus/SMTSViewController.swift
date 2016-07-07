@@ -183,9 +183,13 @@ public class SMTSViewController: UIViewController {
         statusIndicator.lineWidth = style.lineWidth
         lblStatus.textColor = style.progressColor
         view.backgroundColor = style.backgroundColor
-        view.layer.borderColor = style.borderColor
+        view.layer.borderColor = style.backgroundBorderColor
         view.layer.borderWidth = style.borderWidth
         view.layer.cornerRadius = style.viewCornerRadius
+        
+        view.layer.shadowColor = style.shadowColor
+        view.layer.shadowRadius = 5.0
+        view.layer.shadowOpacity = style.shadowOpacity
         
         svActions.alignment = .Fill
         svActions.distribution = .FillEqually

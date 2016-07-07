@@ -18,16 +18,17 @@ public enum SMTSActionType {
     case Default, Cancel
 }
 
-struct SMTSConstants {
+public struct SMTSConstants {
     
-    static let SMTSVCNibName = "SMTSViewController"
     static let tm = SMTSTransitionManager()
-    static let smtsStyle = SMTSStyle()
     
-    static let ringStrokeAnimationKey = "StatusIndicator.stroke"
-    static let ringRotationAnimationKey = "StatusIndicator.rotation"
-    static let completionAnimationDuration: NSTimeInterval = 0.3
-    static let hidesWhenCompletedDelay: NSTimeInterval = 0.5
+    public static let SMTSVCNibName = "SMTSViewController"
+    public static let smtsStyle = SMTSStyle()
+    
+    public static let ringStrokeAnimationKey = "StatusIndicator.stroke"
+    public static let ringRotationAnimationKey = "StatusIndicator.rotation"
+    public static let completionAnimationDuration: NSTimeInterval = 0.3
+    public static let hidesWhenCompletedDelay: NSTimeInterval = 0.5
     
 }
 

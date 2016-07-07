@@ -44,6 +44,10 @@ public class SMTSAction: NSObject {
             SMTSConstants.smtsStyle.defaultButtonBackgroundColor :
             SMTSConstants.smtsStyle.cancelButtonBackgroundColor
         button.layer.cornerRadius = SMTSConstants.smtsStyle.buttonsCornerRadius
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = type == .Default ?
+            SMTSConstants.smtsStyle.defaultButtonBorderColor :
+            SMTSConstants.smtsStyle.cancelButtonBorderColor
         
     }
     
