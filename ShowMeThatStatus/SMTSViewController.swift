@@ -153,23 +153,25 @@ public class SMTSViewController: UIViewController {
             constrStackViewHeight.constant = CGFloat(shown * 50 - 5)
         }
         
-        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.5,
-                                   initialSpringVelocity: 0.8, options: [], animations: {
-                self.view.layoutIfNeeded()
-                
-                self.vPlaceholder.hidden = shown != 0
-                
-                for action in self.actions {
-                    action.button.hidden = !(action.visibleStates.contains(self.status) ||
-                        action.visibleStates.contains(.All))
-                }
-            }, completion: { finished in
-                
-                for action in self.actions {
-                    action.button.hidden = !(action.visibleStates.contains(self.status) ||
-                        action.visibleStates.contains(.All))
-                }
-        })
+        dispatch_async(dispatch_get_main_queue()) { 
+            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.5,
+                                       initialSpringVelocity: 0.8, options: [], animations: {
+                                        self.view.layoutIfNeeded()
+                                        
+                                        self.vPlaceholder.hidden = shown != 0
+                                        
+                                        for action in self.actions {
+                                            action.button.hidden = !(action.visibleStates.contains(self.status) ||
+                                                action.visibleStates.contains(.All))
+                                        }
+                }, completion: { finished in
+                    
+                    for action in self.actions {
+                        action.button.hidden = !(action.visibleStates.contains(self.status) ||
+                            action.visibleStates.contains(.All))
+                    }
+            })
+        }
         
     }
     
