@@ -57,8 +57,8 @@ pod 'ShowMeThatStatus'
 
 ```
 
-smtsStyle.backgroundColor = .blackColor()
-smtsStyle.cancelButtonFont = UIFont.systemFontOfSize(15)
+SMTSConstants.smtsStyle.backgroundColor = .blackColor()
+SMTSConstants.smtsStyle.cancelButtonFont = UIFont.systemFontOfSize(15)
 
 //etc...
 
