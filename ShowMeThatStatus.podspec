@@ -6,7 +6,7 @@ s.name = "ShowMeThatStatus"
 s.summary = "This is a component written in Swift for iOS 9.0+ to display statuses of a process in a nicely animated manner."
 s.requires_arc = true
 
-s.version = "0.1.0"
+s.version = "0.2.0"
 
 s.license = { :type => "MIT", :file => "LICENSE" }
 
