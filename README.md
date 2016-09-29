@@ -30,27 +30,27 @@ pod 'ShowMeThatStatus'
 
 ```
 
-        let vc = SMTSViewController(status: .loading, message: "Loading...")
+                let vc = SMTSViewController(status: .loading, message: "Loading...")
         
         vc.addAction(withTitle: "Cancel", visibleForStates: [.progress, .loading], ofType: .cancel) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             
             //Your action..
         }
-
+        
         vc.addAction(withTitle: "Retry", visibleForStates: [.failure]) {
-            vc.changeStatusTo(.loading, message: "Loading...")
+            vc.changeStatus(to: .loading, withMessage: "Loading...")
             
             //Your action..
         }
         
         vc.addAction(withTitle: "Done", visibleForStates: [.success]) {
-            self.dismissViewControllerAnimated(trueConfor, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             
             //Your action..
         }
         
-        presentViewController(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
 ```
 * This will present StatusVC centered and will be changing height of its view automatically with simple animation based on the amount of action buttons and length of status text. 
 * When adding action you can determine controller's states that action is available for which hides/unhides specific buttons on status change. 
