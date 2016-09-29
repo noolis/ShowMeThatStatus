@@ -6,7 +6,13 @@ View controller that can be used for presenting status changes to the user, for 
 
 * It has 4 different visible states - loading, progress (loading with completion percentage), success, failure.
 
+## Requirements: ##
 
+- iOS 9.0+
+- XCode 8.0+
+- Swift 3.0+
+
+(For Swift 2 compatibility use **swift2** branch)
 
 ## GIF example: ##
 
@@ -17,8 +23,6 @@ View controller that can be used for presenting status changes to the user, for 
 * To add it to your project best way is to use *Cocoapods*:
 
 ```
-source 'https://github.com/wssj/SMTSPodSpecs.git'
-
 pod 'ShowMeThatStatus'
 ```
 
@@ -26,22 +30,22 @@ pod 'ShowMeThatStatus'
 
 ```
 
-        let vc = SMTSViewController(status: .Loading, message: "Loading...")
+        let vc = SMTSViewController(status: .loading, message: "Loading...")
         
-        vc.addActionWithTitle("Cancel", visibleForStates: [.Progress, .Loading], ofType: .Cancel) {
+        vc.addAction(withTitle: "Cancel", visibleForStates: [.progress, .loading], ofType: .cancel) {
             self.dismissViewControllerAnimated(true, completion: nil)
             
             //Your action..
         }
 
-        vc.addActionWithTitle("Retry", visibleForStates: [.Failure]) {
-            vc.changeStatusTo(.Loading, message: "Loading...")
+        vc.addAction(withTitle: "Retry", visibleForStates: [.failure]) {
+            vc.changeStatusTo(.loading, message: "Loading...")
             
             //Your action..
         }
         
-        vc.addActionWithTitle("Done", visibleForStates: [.Success]) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+        vc.addAction(withTitle: "Done", visibleForStates: [.success]) {
+            self.dismissViewControllerAnimated(trueConfor, completion: nil)
             
             //Your action..
         }

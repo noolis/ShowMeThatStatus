@@ -73,12 +73,12 @@ open class SMTSViewController: UIViewController {
             
         }
         
-        changeStatusTo(status, message: statusMessage, progress: 0)
+        changeStatus(to: status, withMessage: statusMessage, progress: 0)
     }
     
     //MARK: - Updates
 
-    open func changeStatusTo(_ status: SMTSProgressStatus, message: String? = nil,
+    open func changeStatus(to status: SMTSProgressStatus, withMessage message: String? = nil,
                         progress: Float? = nil,
                         didFinishAnimating: StatusIndicatorBlock? = nil) {
         
@@ -114,7 +114,7 @@ open class SMTSViewController: UIViewController {
     }
     
     
-    open func addActionWithTitle(_ title: String,
+    open func addAction(withTitle title: String,
                                  visibleForStates states: [SMTSProgressStatus] = [.all],
                                  ofType type: SMTSActionType = .default,
                                  actionBlock: @escaping () -> ()) {
