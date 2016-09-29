@@ -11,11 +11,11 @@ import Foundation
 public typealias StatusIndicatorBlock = () -> Void
 
 public enum SMTSProgressStatus {
-    case Unknown, Loading, Progress, Failure, Success, All
+    case unknown, loading, progress, failure, success, all
 }
 
 public enum SMTSActionType {
-    case Default, Cancel
+    case `default`, cancel
 }
 
 public struct SMTSConstants {
@@ -27,8 +27,8 @@ public struct SMTSConstants {
     
     public static let ringStrokeAnimationKey = "StatusIndicator.stroke"
     public static let ringRotationAnimationKey = "StatusIndicator.rotation"
-    public static let completionAnimationDuration: NSTimeInterval = 0.3
-    public static let hidesWhenCompletedDelay: NSTimeInterval = 0.5
+    public static let completionAnimationDuration: TimeInterval = 0.3
+    public static let hidesWhenCompletedDelay: TimeInterval = 0.5
     
 }
 

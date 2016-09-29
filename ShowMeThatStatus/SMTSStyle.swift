@@ -8,46 +8,46 @@
 
 import UIKit
 
-public class SMTSStyle: NSObject {
+open class SMTSStyle: NSObject {
     
     //Colors
-    public var backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0,
+    open var backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0,
                                   blue: 237.0/255.0, alpha: 1.0)
-    public var successColor = UIColor(red: 30.0/255.0, green: 205.0/255.0,
+    open var successColor = UIColor(red: 30.0/255.0, green: 205.0/255.0,
                                blue: 151.0/255.0, alpha: 1.0)
-    public var failureColor = UIColor(red: 194.0/255.0, green: 59.0/255.0,
+    open var failureColor = UIColor(red: 194.0/255.0, green: 59.0/255.0,
                                blue: 34.0/255.0, alpha: 1.0)
-    public var progressColor = UIColor.grayColor()
-    public var defaultButtonTextColor = UIColor.whiteColor()
-    public var cancelButtonTextColor = UIColor.whiteColor()
-    public var defaultButtonBackgroundColor = UIColor(red: 162.0/255.0, green: 164.0/255.0,
+    open var progressColor = UIColor.gray
+    open var defaultButtonTextColor = UIColor.white
+    open var cancelButtonTextColor = UIColor.white
+    open var defaultButtonBackgroundColor = UIColor(red: 162.0/255.0, green: 164.0/255.0,
                                                blue: 165.0/255.0, alpha: 1.0)
-    public var cancelButtonBackgroundColor = UIColor(red: 162.0/255.0, green: 164.0/255.0,
+    open var cancelButtonBackgroundColor = UIColor(red: 162.0/255.0, green: 164.0/255.0,
                                               blue: 165.0/255.0, alpha: 1.0)
     
     //Borders
-    public var backgroundBorderColor = UIColor.clearColor().CGColor
-    public var defaultButtonBorderColor = UIColor.clearColor().CGColor
-    public var cancelButtonBorderColor = UIColor.clearColor().CGColor
+    open var backgroundBorderColor = UIColor.clear.cgColor
+    open var defaultButtonBorderColor = UIColor.clear.cgColor
+    open var cancelButtonBorderColor = UIColor.clear.cgColor
     
     //Fonts
-    public var statusFont = UIFont.systemFontOfSize(17)
-    public var progressFont = UIFont.systemFontOfSize(19)
-    public var defaultButtonFont = UIFont.systemFontOfSize(15)
-    public var cancelButtonFont = UIFont.boldSystemFontOfSize(15)
+    open var statusFont = UIFont.systemFont(ofSize: 17)
+    open var progressFont = UIFont.systemFont(ofSize: 19)
+    open var defaultButtonFont = UIFont.systemFont(ofSize: 15)
+    open var cancelButtonFont = UIFont.boldSystemFont(ofSize: 15)
     
     //Corners
-    public var buttonsCornerRadius: CGFloat = 4.0
-    public var viewCornerRadius: CGFloat = 4.0
+    open var buttonsCornerRadius: CGFloat = 4.0
+    open var viewCornerRadius: CGFloat = 4.0
     
     //Size
-    public var width = floor(UIScreen.mainScreen().bounds.size.width * 0.8)
-    public var lineWidth: CGFloat = 6.0
-    public var borderWidth: CGFloat = 1.0
+    open var width = floor(UIScreen.main.bounds.size.width * 0.8)
+    open var lineWidth: CGFloat = 6.0
+    open var borderWidth: CGFloat = 1.0
     
     //Shadow
-    public var shadowColor = UIColor.clearColor().CGColor
-    public var shadowOpacity: Float = 0.5
+    open var shadowColor = UIColor.clear.cgColor
+    open var shadowOpacity: Float = 0.5
     
 
 }

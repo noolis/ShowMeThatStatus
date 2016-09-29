@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SMTSAction: NSObject {
+open class SMTSAction: NSObject {
 
     var title: String
     var actionBlock: (() -> ())
@@ -18,8 +18,8 @@ public class SMTSAction: NSObject {
     var button: UIButton
     
     
-    init(title: String, actionBlock: () -> (), visibleStates: [SMTSProgressStatus],
-         type: SMTSActionType = .Default) {
+    init(title: String, actionBlock: @escaping () -> (), visibleStates: [SMTSProgressStatus],
+         type: SMTSActionType = .default) {
         
         self.title = title
         self.actionBlock = actionBlock
@@ -32,20 +32,20 @@ public class SMTSAction: NSObject {
         
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(performActionBlock),
-                          forControlEvents: .TouchUpInside)
-        button.setTitle(title, forState: .Normal)
+                          for: .touchUpInside)
+        button.setTitle(title, for: UIControlState())
         
-        button.titleLabel?.font = type == .Default ?
+        button.titleLabel?.font = type == .default ?
             SMTSConstants.smtsStyle.defaultButtonFont : SMTSConstants.smtsStyle.cancelButtonFont
-        button.setTitleColor(type == .Default ?
+        button.setTitleColor(type == .default ?
             SMTSConstants.smtsStyle.defaultButtonTextColor : SMTSConstants.smtsStyle.cancelButtonTextColor,
-                              forState: .Normal)
-        button.backgroundColor = type == .Default ?
+                              for: UIControlState())
+        button.backgroundColor = type == .default ?
             SMTSConstants.smtsStyle.defaultButtonBackgroundColor :
             SMTSConstants.smtsStyle.cancelButtonBackgroundColor
         button.layer.cornerRadius = SMTSConstants.smtsStyle.buttonsCornerRadius
         button.layer.borderWidth = 1.0
-        button.layer.borderColor = type == .Default ?
+        button.layer.borderColor = type == .default ?
             SMTSConstants.smtsStyle.defaultButtonBorderColor :
             SMTSConstants.smtsStyle.cancelButtonBorderColor
         

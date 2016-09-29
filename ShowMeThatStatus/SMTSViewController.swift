@@ -8,30 +8,30 @@
 
 import UIKit
 
-public class SMTSViewController: UIViewController {
+open class SMTSViewController: UIViewController {
     
-    private var statusMessage: String!
-    private var actions = [SMTSAction]()
-    private var status: SMTSProgressStatus = .Unknown
+    fileprivate var statusMessage: String!
+    fileprivate var actions = [SMTSAction]()
+    fileprivate var status: SMTSProgressStatus = .unknown
     
     var style = SMTSConstants.smtsStyle
     
     //MARK: - Outlets
     
-    @IBOutlet private weak var statusIndicator: StatusIndicator!
-    @IBOutlet private weak var lblStatus: UILabel!
-    @IBOutlet private weak var svActions: UIStackView!
-    @IBOutlet private weak var constrStackViewHeight: NSLayoutConstraint!
-    @IBOutlet private weak var vPlaceholder: UIView!
+    @IBOutlet fileprivate weak var statusIndicator: StatusIndicator!
+    @IBOutlet fileprivate weak var lblStatus: UILabel!
+    @IBOutlet fileprivate weak var svActions: UIStackView!
+    @IBOutlet fileprivate weak var constrStackViewHeight: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var vPlaceholder: UIView!
 
     //MARK: - Init
     
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         transitioningDelegate = SMTSConstants.tm
-        modalPresentationStyle = .Custom
+        modalPresentationStyle = .custom
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -42,7 +42,7 @@ public class SMTSViewController: UIViewController {
     public convenience init(status: SMTSProgressStatus, message: String = "") {
         
         self.init(nibName: SMTSConstants.SMTSVCNibName,
-                  bundle: NSBundle(forClass: SMTSViewController.self))
+                  bundle: Bundle(for: SMTSViewController.self))
         self.status = status
         self.statusMessage = message
     }
@@ -50,23 +50,23 @@ public class SMTSViewController: UIViewController {
     public convenience init() {
         
         self.init(nibName: SMTSConstants.SMTSVCNibName,
-                  bundle: NSBundle(forClass: SMTSViewController.self))
+                  bundle: Bundle(for: SMTSViewController.self))
     }
     
     //MARK: - View life cycle
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         setAppearance()
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         for action in actions {
             
-            action.button.hidden = true
+            action.button.isHidden = true
             if self.svActions != nil {
                 self.svActions.addArrangedSubview(action.button)
             }
@@ -78,7 +78,7 @@ public class SMTSViewController: UIViewController {
     
     //MARK: - Updates
 
-    public func changeStatusTo(status: SMTSProgressStatus, message: String? = nil,
+    open func changeStatusTo(_ status: SMTSProgressStatus, message: String? = nil,
                         progress: Float? = nil,
                         didFinishAnimating: StatusIndicatorBlock? = nil) {
         
@@ -94,15 +94,15 @@ public class SMTSViewController: UIViewController {
         }
         
         switch status {
-        case .Loading:
+        case .loading:
             statusIndicator.startLoading()
             statusIndicator.strokeColor = style.progressColor
             lblStatus.textColor = style.progressColor
-        case .Failure:
+        case .failure:
             statusIndicator.completeLoading(false, completion: didFinishAnimating)
             statusIndicator.strokeColor = style.failureColor
             lblStatus.textColor = style.failureColor
-        case .Success:
+        case .success:
             statusIndicator.completeLoading(true, completion: didFinishAnimating)
             statusIndicator.strokeColor = style.successColor
             lblStatus.textColor = style.successColor
@@ -114,8 +114,10 @@ public class SMTSViewController: UIViewController {
     }
     
     
-    public func addActionWithTitle(title: String, visibleForStates states: [SMTSProgressStatus] = [.All],
-                                   ofType type: SMTSActionType = .Default, actionBlock: () -> ()) {
+    open func addActionWithTitle(_ title: String,
+                                 visibleForStates states: [SMTSProgressStatus] = [.all],
+                                 ofType type: SMTSActionType = .default,
+                                 actionBlock: @escaping () -> ()) {
         
         let action = SMTSAction(title: title,
                                 actionBlock: actionBlock,
@@ -124,15 +126,15 @@ public class SMTSViewController: UIViewController {
         actions.append(action)
     }
     
-    private func updateSize() {
+    fileprivate func updateSize() {
         
         let size: CGSize = statusMessage
-            .boundingRectWithSize(CGSizeMake(style.width - 20, 2000),
-                                  options:NSStringDrawingOptions.UsesLineFragmentOrigin,
+            .boundingRect(with: CGSize(width: style.width - 20, height: 2000),
+                                  options:NSStringDrawingOptions.usesLineFragmentOrigin,
                                   attributes: [NSFontAttributeName: style.statusFont],
                                   context: nil).size as CGSize
         
-        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.5,
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5,
                                    initialSpringVelocity: 0.8, options: [], animations: {
                                     
             self.view.frame.size = CGSize(width: self.style.width,
@@ -141,10 +143,10 @@ public class SMTSViewController: UIViewController {
             }, completion: nil)
     }
     
-    private func updateStackView() {
+    fileprivate func updateStackView() {
         
         let shown = actions.filter({return $0.visibleStates.contains(self.status) ||
-            $0.visibleStates.contains(.All)}).count
+            $0.visibleStates.contains(.all)}).count
         
         switch shown {
         case 0, 1:
@@ -153,22 +155,22 @@ public class SMTSViewController: UIViewController {
             constrStackViewHeight.constant = CGFloat(shown * 50 - 5)
         }
         
-        dispatch_async(dispatch_get_main_queue()) { 
-            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.5,
+        DispatchQueue.main.async { 
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5,
                                        initialSpringVelocity: 0.8, options: [], animations: {
                                         self.view.layoutIfNeeded()
                                         
-                                        self.vPlaceholder.hidden = shown != 0
+                                        self.vPlaceholder.isHidden = shown != 0
                                         
                                         for action in self.actions {
-                                            action.button.hidden = !(action.visibleStates.contains(self.status) ||
-                                                action.visibleStates.contains(.All))
+                                            action.button.isHidden = !(action.visibleStates.contains(self.status) ||
+                                                action.visibleStates.contains(.all))
                                         }
                 }, completion: { finished in
                     
                     for action in self.actions {
-                        action.button.hidden = !(action.visibleStates.contains(self.status) ||
-                            action.visibleStates.contains(.All))
+                        action.button.isHidden = !(action.visibleStates.contains(self.status) ||
+                            action.visibleStates.contains(.all))
                     }
             })
         }
@@ -178,7 +180,7 @@ public class SMTSViewController: UIViewController {
     
     //MARK: - Appearance
     
-    private func setAppearance() {
+    fileprivate func setAppearance() {
         
         lblStatus.font = style.statusFont
         statusIndicator.strokeColor = style.progressColor
@@ -193,9 +195,9 @@ public class SMTSViewController: UIViewController {
         view.layer.shadowRadius = 5.0
         view.layer.shadowOpacity = style.shadowOpacity
         
-        svActions.alignment = .Fill
-        svActions.distribution = .FillEqually
-        svActions.axis = .Vertical
+        svActions.alignment = .fill
+        svActions.distribution = .fillEqually
+        svActions.axis = .vertical
         svActions.spacing = 5
         svActions.translatesAutoresizingMaskIntoConstraints = false
     }
